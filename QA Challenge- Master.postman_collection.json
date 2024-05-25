@@ -541,6 +541,45 @@
 					"response": []
 				},
 				{
+					"name": "GET_Bin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.unset(\"variable_key\");\r",
+									"pm.environment.set(\"variable_key\", \"variable_value\");\r",
+									"// Verify the length of response data\r",
+									"pm.test(\"The response data should have at least 1 property\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    const dataKeys = Object.keys(responseData);\r",
+									"   \r",
+									"    pm.expect(dataKeys.length).to.be.greaterThan(0, \"Response data should not be empty\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://httpbin.org/get",
+							"protocol": "https",
+							"host": [
+								"httpbin",
+								"org"
+							],
+							"path": [
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Delete Employee With Incorrect ID",
 					"event": [
 						{
@@ -572,6 +611,14 @@
 								"e0fb3301-cb3e-47f1-9b51-35ff32523sdg"
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "new request",
+					"request": {
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				}
